@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WildeWest
+﻿namespace WildeWest
 {
-    class StateMachine<Entity>
+    internal class StateMachine<Entity>
     {
         public Entity owner;
         public State<Entity> CurrentState { get; set; }

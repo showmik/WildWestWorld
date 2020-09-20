@@ -1,28 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WildeWest
+﻿namespace WildeWest
 {
-    class Miner : BaseGameEntity
+    internal class Miner : BaseGameEntity
     {
-        private int maxGoldCapacity = 3;
-        private int thirstLevelForSaloon = 5;
+        //the amount of gold a miner must have before he feels comfortable
+        private const int comfortLevel = 5;
+        //above this value a miner is thirsty
+        private const int thirstLevel = 5;
+        //the amount of nuggets a miner can carry
+        private const int maxNuggets = 3;
+        //above this value a miner is sleepy
+        private const int tirednessThreshold = 5;
 
         private StateMachine<Miner> stateMachine;
 
-        State<Miner> currentState;
-        public State<Miner>.Location CurrentLocation { get; set; }
+        public enum Location { GoldMine, Bank, Home, Saloon };
+
+        private State<Miner> currentState;
+        public Location CurrentLocation { get; set; }
         public string Name { get; set; }
         public int GoldCarried { get; set; }
         public int MoneyInBank { get; set; }
         public int Thirst { get; set; }
         public int Fatigue { get; set; }
 
-
         public Miner(int id) : base(id)
         {
-            CurrentLocation = State<Miner>.Location.Home;
+            CurrentLocation = Location.Home;
             GoldCarried = 0;
             MoneyInBank = 0;
             Thirst = 0;
@@ -36,7 +39,7 @@ namespace WildeWest
         public override void Update()
         {
             Thirst += 1;
-            stateMachine.Update();  
+            stateMachine.Update();
         }
 
         public void ChangeState(State<Miner> newState)
@@ -46,14 +49,14 @@ namespace WildeWest
             currentState.Enter(this);
         }
 
-        public void ChangeLocation(State<Miner>.Location location)
+        public void ChangeLocation(Location location)
         {
             CurrentLocation = location;
         }
 
         public bool PocketIsFull()
         {
-            if (GoldCarried >= maxGoldCapacity)
+            if (GoldCarried >= maxNuggets)
             {
                 return true;
             }
@@ -62,7 +65,25 @@ namespace WildeWest
 
         public bool Thirsty()
         {
-            if (Thirst >= thirstLevelForSaloon)
+            if (Thirst >= thirstLevel)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool Wealthy()
+        {
+            if (MoneyInBank >= comfortLevel)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool Tired()
+        {
+            if (Fatigue >= tirednessThreshold)
             {
                 return true;
             }

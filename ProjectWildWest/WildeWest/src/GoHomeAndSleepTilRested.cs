@@ -1,12 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
+//------------------------------------------------------------------------
+//  miner will go home and sleep until his fatigue is decreased
+//  sufficiently
+//------------------------------------------------------------------------
 
 namespace WildeWest
 {
-    class GoHomeAndSleepTilRested : State<Miner>
+    internal class GoHomeAndSleepTilRested : State<Miner>
     {
         private static GoHomeAndSleepTilRested instance;
+
         public static GoHomeAndSleepTilRested Instance
         {
             get
@@ -19,18 +23,20 @@ namespace WildeWest
             }
         }
 
+        private GoHomeAndSleepTilRested() { }
+
         public override void Enter(Miner miner)
         {
-            if (miner.CurrentLocation != Location.Home)
+            if (miner.CurrentLocation != Miner.Location.Home)
             {
                 Console.WriteLine($"{miner.Name}: Walkin' home");
-                miner.ChangeLocation(Location.Home);
+                miner.ChangeLocation(Miner.Location.Home);
             }
         }
 
         public override void Execute(Miner miner)
         {
-            if (miner.Fatigue > 4)
+            if (miner.Tired())
             {
                 Console.WriteLine($"{miner.Name}: ZZZZ...");
                 miner.Fatigue--;

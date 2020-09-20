@@ -3,17 +3,16 @@ using System.Threading;
 
 namespace WildeWest
 {
-    class Program
+    internal class Program
     {
-        
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Miner miner = new Miner(18);
-            miner.Name = "Miner Pius";
+            Miner bob = new Miner(0);
+            bob.Name = "Miner Bob";
             for (int i = 0; i < 30; i++)
             {
-                miner.Update();
-                
+                bob.Update();
+                Thread.Sleep(800);
             }
             Console.ReadKey();
         }

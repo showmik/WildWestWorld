@@ -2,10 +2,11 @@
 
 namespace WildeWest
 {
-    abstract class BaseGameEntity
+    internal abstract class BaseGameEntity
     {
         protected int id;
         protected static int nextValidID;
+
         public int ID
         {
             get { return id; }
@@ -14,14 +15,14 @@ namespace WildeWest
                 if (value >= nextValidID)
                 {
                     id = value;
-                    nextValidID = id;
-                    nextValidID++;
+                    nextValidID = id + 1;
                 }
                 else
                 {
                     Console.WriteLine("Not a valid ID");
+                    Console.WriteLine("Press any key to exit...");
                     Console.ReadKey();
-                    // close application
+                    Environment.Exit(1);
                 }
             }
         }
@@ -32,6 +33,5 @@ namespace WildeWest
         }
 
         public abstract void Update();
-        
     }
 }

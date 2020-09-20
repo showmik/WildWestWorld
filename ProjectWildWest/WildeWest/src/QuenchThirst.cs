@@ -1,12 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
+//-------------------------------------------------------------------------
+//If at any time the miner feels thirsty, he changes to this state and
+//visits the saloon in order to buy a whiskey. When his thirst is quenched,
+//he changes state to EnterMineAndDigForNugget.
+//-------------------------------------------------------------------------
 
 namespace WildeWest
 {
-    class QuenchThirst : State<Miner>
+    internal class QuenchThirst : State<Miner>
     {
         private static QuenchThirst instance;
+
         public static QuenchThirst Instance
         {
             get
@@ -19,12 +24,14 @@ namespace WildeWest
             }
         }
 
+        private QuenchThirst() { }
+
         public override void Enter(Miner miner)
         {
-            if (miner.CurrentLocation != Location.Saloon)
+            if (miner.CurrentLocation != Miner.Location.Saloon)
             {
                 Console.WriteLine($"{miner.Name}: Boy, ah sure is thusty! Walkin' to the saloon");
-                miner.ChangeLocation(Location.Saloon);
+                miner.ChangeLocation(Miner.Location.Saloon);
             }
         }
 

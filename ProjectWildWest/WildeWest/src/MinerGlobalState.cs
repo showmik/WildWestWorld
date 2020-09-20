@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WildeWest
+﻿namespace WildeWest
 {
-    class MinerGlobalState : State<Miner>
+    internal class MinerGlobalState : State<Miner>
     {
         private static MinerGlobalState instance;
+
         public static MinerGlobalState Instance
         {
             get
@@ -21,17 +18,14 @@ namespace WildeWest
 
         public override void Enter(Miner miner)
         {
-            
         }
 
         public override void Execute(Miner miner)
         {
-            
         }
 
         public override void Exit(Miner miner)
         {
-            
         }
     }
 }

@@ -1,12 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
+//------------------------------------------------------------------------
+//  In this state the miner will walk to a goldmine and pick up a nugget
+//  of gold. If the miner already has a nugget of gold he'll change state
+//  to VisitBankAndDepositGold. If he gets thirsty he'll change state
+//  to QuenchThirst
+//------------------------------------------------------------------------
 
 namespace WildeWest
 {
-    class EnterMineAndDigForNugget : State<Miner>
+    internal class EnterMineAndDigForNugget : State<Miner>
     {
         private static EnterMineAndDigForNugget instance;
+
         public static EnterMineAndDigForNugget Instance
         {
             get
@@ -19,12 +25,14 @@ namespace WildeWest
             }
         }
 
+        private EnterMineAndDigForNugget() { }
+
         public override void Enter(Miner miner)
         {
-            if (miner.CurrentLocation != Location.GoldMine)
+            if (miner.CurrentLocation != Miner.Location.GoldMine)
             {
                 Console.WriteLine($"{miner.Name}: Wakin' to the gold mine");
-                miner.ChangeLocation(Location.GoldMine);
+                miner.ChangeLocation(Miner.Location.GoldMine);
             }
         }
 
@@ -34,12 +42,12 @@ namespace WildeWest
             miner.Fatigue++;
             Console.WriteLine($"{miner.Name}: Pickin' up a nugget");
 
-            if(miner.PocketIsFull())
+            if (miner.PocketIsFull())
             {
                 miner.GetFSM().ChangeState(VisitBankAndDepositGold.Instance);
             }
 
-            if(miner.Thirsty())
+            if (miner.Thirsty())
             {
                 miner.GetFSM().ChangeState(QuenchThirst.Instance);
             }
