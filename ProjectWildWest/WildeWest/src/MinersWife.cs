@@ -19,6 +19,7 @@ namespace WildeWest
 
         public override void Update()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             stateMachine.Update();
         }
 

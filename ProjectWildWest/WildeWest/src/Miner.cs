@@ -1,4 +1,6 @@
-﻿namespace WildeWest
+﻿using System;
+
+namespace WildeWest
 {
     internal class Miner : BaseGameEntity
     {
@@ -35,6 +37,7 @@
 
         public override void Update()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Thirst += 1;
             stateMachine.Update();
         }
