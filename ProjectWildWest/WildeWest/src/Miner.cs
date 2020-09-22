@@ -11,13 +11,11 @@
         //above this value a miner is sleepy
         private const int tirednessThreshold = 5;
 
-        private StateMachine<Miner> stateMachine;
-
         public enum Location { GoldMine, Bank, Home, Saloon };
 
-        private State<Miner> currentState;
+        private StateMachine<Miner> stateMachine;
+
         public Location CurrentLocation { get; set; }
-        public string Name { get; set; }
         public int GoldCarried { get; set; }
         public int MoneyInBank { get; set; }
         public int Thirst { get; set; }
@@ -33,20 +31,12 @@
 
             stateMachine = new StateMachine<Miner>(this);
             stateMachine.SetCurrentState(GoHomeAndSleepTilRested.Instance);
-            stateMachine.SetGlobalState(MinerGlobalState.Instance);
         }
 
         public override void Update()
         {
             Thirst += 1;
             stateMachine.Update();
-        }
-
-        public void ChangeState(State<Miner> newState)
-        {
-            currentState.Exit(this);
-            currentState = newState;
-            currentState.Enter(this);
         }
 
         public void ChangeLocation(Location location)

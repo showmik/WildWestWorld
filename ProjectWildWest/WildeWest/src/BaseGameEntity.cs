@@ -6,6 +6,7 @@ namespace WildeWest
     {
         protected int id;
         protected static int nextValidID;
+        public string Name { get; set; }
 
         public int ID
         {
