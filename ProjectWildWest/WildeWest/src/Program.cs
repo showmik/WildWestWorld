@@ -7,14 +7,19 @@ namespace WildeWest
     {
         private static void Main(string[] args)
         {
-            Miner bob = new Miner(0);
-            MinersWife elsa = new MinersWife(1);
-            bob.Name = "Miner Bob";
-            elsa.Name = "Elsa";
-            for (int i = 0; i < 30; i++)
+            Miner miner = new Miner(0);
+            MinersWife minersWife = new MinersWife(1);
+
+            miner.Name = "Miner Bob";
+            minersWife.Name = "Elsa";
+
+            EntityManager.Instance.RegisterEntity(miner);
+            EntityManager.Instance.RegisterEntity(minersWife);
+
+            for (int i = 0; i < 20; i++)
             {
-                bob.Update();
-                elsa.Update();
+                miner.Update();
+                minersWife.Update();
                 Thread.Sleep(800);
             }
 

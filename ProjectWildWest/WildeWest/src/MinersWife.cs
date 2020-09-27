@@ -2,13 +2,10 @@
 
 namespace WildeWest
 {
-    internal class MinersWife : BaseGameEntity
+    internal partial class MinersWife : BaseGameEntity
     {
-        public enum Location { GoldMine, Bank, Home, Saloon };
-
-        private StateMachine<MinersWife> stateMachine;
+        private readonly StateMachine<MinersWife> stateMachine;
         public Location CurrentLocation { get; set; }
-
 
         public MinersWife(int id) : base(id)
         {

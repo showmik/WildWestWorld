@@ -4,7 +4,7 @@
 //  In this state the miner will walk to a goldmine and pick up a nugget
 //  of gold. If the miner already has a nugget of gold he'll change state
 //  to VisitBankAndDepositGold. If he gets thirsty he'll change state
-//  to QuenchThirst
+//  to QuenchThirst.
 //------------------------------------------------------------------------
 
 namespace WildeWest

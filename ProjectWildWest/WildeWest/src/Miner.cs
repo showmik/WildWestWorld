@@ -2,20 +2,18 @@
 
 namespace WildeWest
 {
-    internal class Miner : BaseGameEntity
+    internal partial class Miner : BaseGameEntity
     {
-        //the amount of gold a miner must have before he feels comfortable
+        // The amount of gold a miner must have before he feels comfortable.
         private const int comfortLevel = 5;
-        //above this value a miner is thirsty
+        // Above this value a miner is thirsty.
         private const int thirstLevel = 5;
-        //the amount of nuggets a miner can carry
+        // The amount of nuggets a miner can carry.
         private const int maxNuggets = 3;
-        //above this value a miner is sleepy
+        // Above this value a miner is sleepy.
         private const int tirednessThreshold = 5;
 
-        public enum Location { GoldMine, Bank, Home, Saloon };
-
-        private StateMachine<Miner> stateMachine;
+        private readonly StateMachine<Miner> stateMachine;
 
         public Location CurrentLocation { get; set; }
         public int GoldCarried { get; set; }
@@ -25,7 +23,7 @@ namespace WildeWest
 
         public Miner(int id) : base(id)
         {
-            CurrentLocation = Location.Home;
+            CurrentLocation = Location.Shack;
             GoldCarried = 0;
             MoneyInBank = 0;
             Thirst = 0;

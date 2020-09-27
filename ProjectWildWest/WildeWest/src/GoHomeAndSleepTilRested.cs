@@ -1,8 +1,8 @@
 ﻿using System;
 
 //------------------------------------------------------------------------
-//  miner will go home and sleep until his fatigue is decreased
-//  sufficiently
+//  Miner will go home and sleep until his fatigue is decreased
+//  sufficiently.
 //------------------------------------------------------------------------
 
 namespace WildeWest
@@ -27,10 +27,10 @@ namespace WildeWest
 
         public override void Enter(Miner miner)
         {
-            if (miner.CurrentLocation != Miner.Location.Home)
+            if (miner.CurrentLocation != Miner.Location.Shack)
             {
                 Console.WriteLine($"{miner.Name}: Walkin' home");
-                miner.ChangeLocation(Miner.Location.Home);
+                miner.ChangeLocation(Miner.Location.Shack);
             }
         }
 

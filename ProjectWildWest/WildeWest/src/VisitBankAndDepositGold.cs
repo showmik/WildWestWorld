@@ -3,14 +3,14 @@
 //------------------------------------------------------------------------
 //  Entity will go to a bank and deposit any nuggets he is carrying. If the
 //  miner is subsequently wealthy enough he'll walk home, otherwise he'll
-//  keep going to get more gold
+//  keep going to get more gold.
 //------------------------------------------------------------------------
 
 namespace WildeWest
 {
     internal class VisitBankAndDepositGold : State<Miner>
     {
-        private static VisitBankAndDepositGold instance = null;
+        private static VisitBankAndDepositGold instance;
 
         public static VisitBankAndDepositGold Instance
         {
