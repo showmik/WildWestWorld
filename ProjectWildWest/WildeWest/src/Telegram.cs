@@ -29,7 +29,7 @@ namespace WildeWest
 
         public static bool IsEqual(Telegram t1, Telegram t2)
         {
-            return Math.Abs(t1.dispatchTime - t2.dispatchTime) < smallestDelay
+            return Math.Abs((t1.dispatchTime - t2.dispatchTime)) < smallestDelay
                 && (t1.sender == t2.sender)
                 && (t1.reciever == t2.reciever)
                 && (t1.message == t2.message);

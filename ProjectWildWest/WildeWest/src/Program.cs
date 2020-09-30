@@ -7,6 +7,8 @@ namespace WildeWest
     {
         private static void Main(string[] args)
         {
+            Clock clock = new Clock();
+
             Miner miner = new Miner(0);
             MinersWife minersWife = new MinersWife(1);
 
@@ -22,7 +24,8 @@ namespace WildeWest
                 minersWife.Update();
                 MessageDispatcher.Instance.DispatchDelayedMessage();
 
-                Thread.Sleep(800);
+                Thread.Sleep(500);
+                //Console.WriteLine($"{Clock.CurrentTime:N2}");
             }
 
             Console.ReadKey();

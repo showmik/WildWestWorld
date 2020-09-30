@@ -1,5 +1,5 @@
-﻿using System;
-using Miscellaneous;
+﻿using Miscellaneous;
+using System;
 
 //------------------------------------------------------------------------
 //  Miner will go home and sleep until his fatigue is decreased
@@ -24,7 +24,9 @@ namespace WildeWest
             }
         }
 
-        private GoHomeAndSleepTilRested() { }
+        private GoHomeAndSleepTilRested()
+        {
+        }
 
         public override void Enter(Miner miner)
         {
@@ -61,7 +63,8 @@ namespace WildeWest
             {
                 case (int)Message.MessageTypes.StewReady:
                     {
-                        Console.WriteLine($"Message handled by {miner.Name} at time {DateTime.Now.TimeOfDay}");
+                        Console.WriteLine($"Message handled by {miner.Name} at time: {Clock.CurrentTime:N3}");
+                        ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Bob);
                         Console.WriteLine($"{miner.Name}: Okay hun, ahm a comin'!");
 
                         miner.GetFSM().ChangeState(EatStew.Instance);

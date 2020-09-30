@@ -18,7 +18,9 @@ namespace WildeWest
             }
         }
 
-        private VisitBathroom() { }
+        private VisitBathroom()
+        {
+        }
 
         public override void Enter(MinersWife wife)
         {

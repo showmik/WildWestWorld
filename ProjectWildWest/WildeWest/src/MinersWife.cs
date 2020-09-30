@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WildeWest
+﻿namespace WildeWest
 {
     internal partial class MinersWife : BaseGameEntity
     {
@@ -23,7 +21,7 @@ namespace WildeWest
 
         public override void Update()
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Elsa);
             stateMachine.Update();
         }
 

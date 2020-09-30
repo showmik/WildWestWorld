@@ -46,7 +46,8 @@ namespace WildeWest
             {
                 case (int)Message.MessageTypes.HiHoneyImHome:
                     {
-                        Console.WriteLine($"Message handled by {wife.Name} at time {DateTime.Now.TimeOfDay}");
+                        Console.WriteLine($"Message handled by {wife.Name} at time: {Clock.CurrentTime:N3}");
+                        ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Elsa);
                         Console.WriteLine($"{wife.Name}: Hi honey. Let me make you some of mah fine country stew");
                         wife.GetFSM().ChangeState(CookStew.Instance);
                     }

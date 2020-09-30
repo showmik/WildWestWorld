@@ -1,6 +1,6 @@
 ﻿namespace Miscellaneous
 {
-    class Message
+    internal struct Message
     {
         public enum MessageTypes
         {
@@ -8,14 +8,14 @@
             StewReady
         }
 
-        public static string GetStringFromMessage(MessageTypes message)
+        public static string GetStringFromMessage(int message)
         {
             switch (message)
             {
-                case MessageTypes.HiHoneyImHome:
+                case (int)MessageTypes.HiHoneyImHome:
                     return "HiHoneyImHome";
 
-                case MessageTypes.StewReady:
+                case (int)MessageTypes.StewReady:
                     return "StewReady";
 
                 default:
