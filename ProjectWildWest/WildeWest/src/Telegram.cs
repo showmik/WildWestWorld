@@ -1,12 +1,31 @@
-﻿using System;
+﻿//------------------------------------------------------------------------
+//
+//  Name:   Telegram.cs
+//
+//  Desc:   This defines a telegram. A telegram is a data structure that
+//          records information required to dispatch messages. Messages
+//          are used by game agents to communicate with each other.
+//
+//------------------------------------------------------------------------
+
+using System;
 
 namespace WildeWest
 {
     internal class Telegram
     {
+        // The entity that sent this telegram.
         public int sender;
+
+        // The entity that is to recieve this telegram.
         public int reciever;
+
+        // The message itself. These are all enumerated in the file "MessageTypes.cs"
         public int message;
+
+        // Messages can be dispatched immediately or delayed for a specified amount
+        // of time. If a delay is necessary this field is stamped with the time
+        // the message should be dispatched.
         public double dispatchTime;
 
         public Telegram()

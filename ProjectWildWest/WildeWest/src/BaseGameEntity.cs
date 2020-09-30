@@ -1,12 +1,25 @@
-﻿using System;
+﻿//------------------------------------------------------------------------
+//
+//  Name:   BaseGameEntity.cs
+//
+//  Desc:   Base class for a game object
+//
+//------------------------------------------------------------------------
+
+using System;
 
 namespace WildeWest
 {
     internal abstract class BaseGameEntity
     {
-        protected int id;
-        protected static int nextValidID;
         public string Name { get; set; }
+
+        // This is the next valid ID. Each time a BaseGameEntity is instantiated
+        // this value is updated
+        protected static int nextValidID;
+
+        // Every entity has a unique ID number.
+        protected int id;
 
         public int ID
         {
@@ -34,6 +47,11 @@ namespace WildeWest
         }
 
         public abstract void Update();
+
+        //---------------------------- HandleMessage-- --------------
+        //all entities can communicate using messages. They are sent
+        //using the MessageDispatcher singleton class
+        //-----------------------------------------------------------
 
         public abstract bool HandleMessage(Telegram message);
     }

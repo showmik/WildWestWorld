@@ -1,4 +1,12 @@
-﻿namespace WildeWest
+﻿//------------------------------------------------------------------------
+//
+//  Name:   Miner.cs
+//
+//  Desc:   A class defining a goldminer.
+//
+//------------------------------------------------------------------------
+
+namespace WildeWest
 {
     internal partial class Miner : BaseGameEntity
     {
@@ -14,12 +22,21 @@
         // Above this value a miner is sleepy.
         private const int tirednessThreshold = 5;
 
+        // An instance of the state machine class.
         private readonly StateMachine<Miner> stateMachine;
 
         public Location CurrentLocation { get; set; }
+
+        // How many nuggets the miner has in his pockets.
         public int GoldCarried { get; set; }
+
+        // How much money the miner has in the bank.
         public int MoneyInBank { get; set; }
+
+        // The higher the value, the thirstier the miner.
         public int Thirst { get; set; }
+
+        // The higher the value, the more tired the miner.
         public int Fatigue { get; set; }
 
         public Miner(int id) : base(id)

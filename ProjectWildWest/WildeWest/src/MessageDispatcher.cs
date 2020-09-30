@@ -1,4 +1,13 @@
-﻿using Miscellaneous;
+﻿//------------------------------------------------------------------------
+//
+//  Name:   MessageDispatcher.cs
+//
+//  Desc:   A message dispatcher. Manages messages of the type Telegram.
+//          Instantiated as a singleton.
+//
+//------------------------------------------------------------------------
+
+using Miscellaneous;
 using System;
 using System.Collections.Generic;
 using System.Linq;

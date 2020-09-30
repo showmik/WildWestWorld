@@ -24,7 +24,9 @@ namespace WildeWest
             }
         }
 
-        private QuenchThirst() { }
+        private QuenchThirst()
+        {
+        }
 
         public override void Enter(Miner miner)
         {

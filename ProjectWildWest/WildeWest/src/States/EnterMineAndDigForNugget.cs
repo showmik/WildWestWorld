@@ -25,7 +25,9 @@ namespace WildeWest
             }
         }
 
-        private EnterMineAndDigForNugget() { }
+        private EnterMineAndDigForNugget()
+        {
+        }
 
         public override void Enter(Miner miner)
         {
