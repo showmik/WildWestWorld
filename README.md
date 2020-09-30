@@ -1,2 +1,2 @@
-# wild-west-world
+# Wild West World
  
