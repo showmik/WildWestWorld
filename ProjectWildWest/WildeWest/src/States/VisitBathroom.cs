@@ -35,5 +35,10 @@ namespace WildeWest
         {
             Console.WriteLine($"{wife.Name}: Leavin' the Jon");
         }
+
+        public override bool OnMessage(MinersWife miner, Telegram message)
+        {
+            return false;
+        }
     }
 }

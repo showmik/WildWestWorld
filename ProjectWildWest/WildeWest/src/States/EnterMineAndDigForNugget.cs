@@ -57,5 +57,10 @@ namespace WildeWest
         {
             Console.WriteLine($"{miner.Name}: Ah'm leavin' the gold mine with mah pockets full o' sweet gold");
         }
+
+        public override bool OnMessage(Miner miner, Telegram message)
+        {
+            return false;
+        }
     }
 }

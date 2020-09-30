@@ -1,9 +1,9 @@
 ﻿using System;
 
 //-------------------------------------------------------------------------
-//If at any time the miner feels thirsty, he changes to this state and
-//visits the saloon in order to buy a whiskey. When his thirst is quenched,
-//he changes state to EnterMineAndDigForNugget.
+// If at any time the miner feels thirsty, he changes to this state and
+// visits the saloon in order to buy a whiskey. When his thirst is quenched,
+// he changes state to EnterMineAndDigForNugget.
 //-------------------------------------------------------------------------
 
 namespace WildeWest
@@ -45,6 +45,11 @@ namespace WildeWest
         public override void Exit(Miner miner)
         {
             Console.WriteLine($"{miner.Name}: Leavin' the saloon, feelin' good");
+        }
+
+        public override bool OnMessage(Miner miner, Telegram message)
+        {
+            return false;
         }
     }
 }

@@ -49,5 +49,10 @@ namespace WildeWest
         public override void Exit(MinersWife minersWife)
         {
         }
+
+        public override bool OnMessage(MinersWife miner, Telegram message)
+        {
+            return false;
+        }
     }
 }

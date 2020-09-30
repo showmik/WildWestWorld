@@ -16,10 +16,12 @@ namespace WildeWest
             EntityManager.Instance.RegisterEntity(miner);
             EntityManager.Instance.RegisterEntity(minersWife);
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 30; i++)
             {
                 miner.Update();
                 minersWife.Update();
+                MessageDispatcher.Instance.DispatchDelayedMessage();
+
                 Thread.Sleep(800);
             }
 

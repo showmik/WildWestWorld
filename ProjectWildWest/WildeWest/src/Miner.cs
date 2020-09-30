@@ -6,10 +6,13 @@ namespace WildeWest
     {
         // The amount of gold a miner must have before he feels comfortable.
         private const int comfortLevel = 5;
+
         // Above this value a miner is thirsty.
         private const int thirstLevel = 5;
+
         // The amount of nuggets a miner can carry.
         private const int maxNuggets = 3;
+
         // Above this value a miner is sleepy.
         private const int tirednessThreshold = 5;
 
@@ -33,6 +36,11 @@ namespace WildeWest
             stateMachine.SetCurrentState(GoHomeAndSleepTilRested.Instance);
         }
 
+        public override bool HandleMessage(Telegram message)
+        {
+            return stateMachine.HandleMessage(message);
+        }
+
         public override void Update()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -43,6 +51,11 @@ namespace WildeWest
         public void ChangeLocation(Location location)
         {
             CurrentLocation = location;
+        }
+
+        public StateMachine<Miner> GetFSM()
+        {
+            return stateMachine;
         }
 
         public bool PocketIsFull()
@@ -79,11 +92,6 @@ namespace WildeWest
                 return true;
             }
             return false;
-        }
-
-        public StateMachine<Miner> GetFSM()
-        {
-            return stateMachine;
         }
     }
 }

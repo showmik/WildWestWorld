@@ -34,5 +34,7 @@ namespace WildeWest
         }
 
         public abstract void Update();
+
+        public abstract bool HandleMessage(Telegram message);
     }
 }

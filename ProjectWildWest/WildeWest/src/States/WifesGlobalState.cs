@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Miscellaneous;
+using System;
 
 namespace WildeWest
 {
@@ -18,7 +19,9 @@ namespace WildeWest
             }
         }
 
-        private WifesGlobalState() { }
+        private WifesGlobalState()
+        {
+        }
 
         public override void Enter(MinersWife wife)
         {
@@ -35,6 +38,21 @@ namespace WildeWest
 
         public override void Exit(MinersWife wife)
         {
+        }
+
+        public override bool OnMessage(MinersWife wife, Telegram telegram)
+        {
+            switch (telegram.message)
+            {
+                case (int)Message.MessageTypes.HiHoneyImHome:
+                    {
+                        Console.WriteLine($"Message handled by {wife.Name} at time {DateTime.Now.TimeOfDay}");
+                        Console.WriteLine($"{wife.Name}: Hi honey. Let me make you some of mah fine country stew");
+                        wife.GetFSM().ChangeState(CookStew.Instance);
+                    }
+                    return true;
+            }
+            return false;
         }
     }
 }

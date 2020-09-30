@@ -43,6 +43,20 @@
             }
         }
 
+        internal bool HandleMessage(Telegram message)
+        {
+            if ((CurrentState != null) && CurrentState.OnMessage(owner, message))
+            {
+                return true;
+            }
+
+            if ((GlobalState != null) && GlobalState.OnMessage(owner, message))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void ChangeState(State<Entity> newState)
         {
             PreviousState = CurrentState;
