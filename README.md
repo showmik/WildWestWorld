@@ -1,6 +1,6 @@
 # Wild West World
  
-Wild West World is a game AI project based on the concepts explained in the book "Programming Game AI by Example" by Matt Buckland. This project demonstrates the implementation of a Finite State Machine (FSM) for game AI. The original project was written in C++, but this version has been implemented using a C# console application.
+**Wild West World** is a game AI project based on the concepts explained in the book "**Programming Game AI by Example**" by Matt Buckland. This project demonstrates the implementation of a Finite State Machine (FSM) for game AI. The original project was written in C++, but this version has been implemented using a C# console application.
 
 ## Introduction
 
@@ -23,7 +23,7 @@ To install and run the project, follow these steps:
 1. Clone the repository to your local machine.
 
 	```bash
-	 git clone https://github.com/your-username/wild-west-world.git
+	 git clone https://github.com/showmik/wild-west-world.git
 	```
 
 2. Open the solution file `WildWestWorld.sln` in Microsoft Visual Studio.
