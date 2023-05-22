@@ -14,49 +14,37 @@ namespace WildeWest
 {
     internal class Telegram
     {
-        // The entity that sent this telegram.
-        public int sender;
+        public const double SmallestDelay = 0.25d;
 
-        // The entity that is to recieve this telegram.
-        public int reciever;
-
-        // The message itself. These are all enumerated in the file "MessageTypes.cs"
-        public int message;
-
-        // Messages can be dispatched immediately or delayed for a specified amount
-        // of time. If a delay is necessary this field is stamped with the time
-        // the message should be dispatched.
-        public double dispatchTime;
+        public int Sender { get; }
+        public int Reciever { get; }
+        public int Message { get; }
+        public double DispatchTime { get; set; }
 
         public Telegram()
         {
-            sender = -1;
-            reciever = -1;
-            message = -1;
-            dispatchTime = -1;
+            Sender = -1;
+            Reciever = -1;
+            Message = -1;
+            DispatchTime = -1;
         }
 
         public Telegram(double time, int sender, int reciever, int msg)
         {
-            dispatchTime = time;
-            this.sender = sender;
-            this.reciever = reciever;
-            message = msg;
+            DispatchTime = time;
+            this.Sender = sender;
+            this.Reciever = reciever;
+            Message = msg;
         }
-
-        public const double smallestDelay = 0.25d;
 
         public static bool IsEqual(Telegram t1, Telegram t2)
         {
-            return Math.Abs((t1.dispatchTime - t2.dispatchTime)) < smallestDelay
-                && (t1.sender == t2.sender)
-                && (t1.reciever == t2.reciever)
-                && (t1.message == t2.message);
+            return Math.Abs((t1.DispatchTime - t2.DispatchTime)) < SmallestDelay
+                && (t1.Sender == t2.Sender)
+                && (t1.Reciever == t2.Reciever)
+                && (t1.Message == t2.Message);
         }
 
-        public bool IsLessThan(Telegram telegram)
-        {
-            return !IsEqual(this, telegram) && dispatchTime < telegram.dispatchTime;
-        }
+        public bool IsLessThan(Telegram telegram) => !IsEqual(this, telegram) && DispatchTime < telegram.DispatchTime;
     }
 }

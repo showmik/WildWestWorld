@@ -5,23 +5,8 @@ namespace WildeWest
 {
     internal class WifesGlobalState : State<MinersWife>
     {
-        private static WifesGlobalState instance;
-
-        public static WifesGlobalState Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new WifesGlobalState();
-                }
-                return instance;
-            }
-        }
-
-        private WifesGlobalState()
-        {
-        }
+        private static WifesGlobalState _instance;
+        public static WifesGlobalState Instance => _instance ??= new WifesGlobalState();
 
         public override void Enter(MinersWife wife)
         {
@@ -32,7 +17,7 @@ namespace WildeWest
             Random random = new Random();
             if (random.Next(101) <= 10)
             {
-                wife.GetFSM().ChangeState(VisitBathroom.Instance);
+                wife.FSM.ChangeState(VisitBathroom.Instance);
             }
         }
 
@@ -42,14 +27,14 @@ namespace WildeWest
 
         public override bool OnMessage(MinersWife wife, Telegram telegram)
         {
-            switch (telegram.message)
+            switch (telegram.Message)
             {
                 case (int)Message.MessageTypes.HiHoneyImHome:
                     {
                         Console.WriteLine($"Message handled by {wife.Name} at time: {Clock.CurrentTime:N3}");
                         ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Elsa);
                         Console.WriteLine($"{wife.Name}: Hi honey. Let me make you some of mah fine country stew");
-                        wife.GetFSM().ChangeState(CookStew.Instance);
+                        wife.FSM.ChangeState(CookStew.Instance);
                     }
                     return true;
             }

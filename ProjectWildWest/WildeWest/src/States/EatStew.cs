@@ -4,23 +4,8 @@ namespace WildeWest
 {
     internal class EatStew : State<Miner>
     {
-        private static EatStew instance;
-
-        public static EatStew Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new EatStew();
-                }
-                return instance;
-            }
-        }
-
-        private EatStew()
-        {
-        }
+        private static EatStew _instance;
+        public static EatStew Instance => _instance ??= new EatStew();
 
         public override void Enter(Miner miner)
         {
@@ -30,7 +15,7 @@ namespace WildeWest
         public override void Execute(Miner miner)
         {
             Console.WriteLine($"{miner.Name}: Tastes real good too!");
-            miner.GetFSM().RevertToPreviousState();
+            miner.FSM.RevertToPreviousState();
         }
 
         public override void Exit(Miner miner)

@@ -16,25 +16,12 @@ namespace WildeWest
 {
     internal class MessageDispatcher
     {
+        private static MessageDispatcher _instance;
+        public static MessageDispatcher Instance => _instance ??= new MessageDispatcher();
+
         public Queue<Telegram> priorityQ;
-        private static MessageDispatcher instance;
 
-        public static MessageDispatcher Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new MessageDispatcher();
-                }
-                return instance;
-            }
-        }
-
-        private MessageDispatcher()
-        {
-            priorityQ = new Queue<Telegram>();
-        }
+        private MessageDispatcher() => priorityQ = new Queue<Telegram>();
 
         //---------------------------- Discharge ---------------------------
         // This method is utilized by DispatchMessage or DispatchDelayedMessages.
@@ -78,7 +65,7 @@ namespace WildeWest
             }
             else
             {
-                telegram.dispatchTime = Clock.CurrentTime + delay;
+                telegram.DispatchTime = Clock.CurrentTime + delay;
 
                 priorityQ.Enqueue(telegram);
                 ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Telegram);
@@ -97,14 +84,14 @@ namespace WildeWest
             double currentTime = Clock.CurrentTime;
 
             while ((priorityQ.Count != 0)
-                && (priorityQ.First().dispatchTime < currentTime)
-                && (priorityQ.First().dispatchTime > 0))
+                && (priorityQ.First().DispatchTime < currentTime)
+                && (priorityQ.First().DispatchTime > 0))
             {
                 Telegram telegram = priorityQ.First();
-                BaseGameEntity pReciever = EntityManager.Instance.GetEntityFromID(telegram.reciever);
+                BaseGameEntity pReciever = EntityManager.Instance.GetEntityFromID(telegram.Reciever);
 
                 ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Telegram);
-                Console.WriteLine($"Queued telegram ready for dispatch: Sent to {pReciever.Name}, Message is {Message.GetStringFromMessage(telegram.message)}");
+                Console.WriteLine($"Queued telegram ready for dispatch: Sent to {pReciever.Name}, Message is {Message.GetStringFromMessage(telegram.Message)}");
 
                 Discharge(pReciever, telegram);
 

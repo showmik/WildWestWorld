@@ -12,27 +12,16 @@ namespace WildeWest
 {
     internal class EntityManager
     {
-        private static EntityManager instance;
-
-        public static EntityManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new EntityManager();
-                }
-                return instance;
-            }
-        }
+        private static EntityManager _instance;
+        public static EntityManager Instance => _instance ??= new EntityManager();
 
         // To facilitate quick lookup the entities are stored in a Dictionary, in which
         // pointers to entities are cross referenced by their ID number.
-        private Dictionary<int, BaseGameEntity> entityMap;
+        private Dictionary<int, BaseGameEntity> _entityMap;
 
         private EntityManager()
         {
-            entityMap = new Dictionary<int, BaseGameEntity>();
+            _entityMap = new Dictionary<int, BaseGameEntity>();
         }
 
         //---------------------------- RegisterEntity ---------------------------
@@ -40,25 +29,16 @@ namespace WildeWest
         // with the ID number as key.
         //------------------------------------------------------------------------
 
-        public void RegisterEntity(BaseGameEntity newEntity)
-        {
-            entityMap.Add(newEntity.ID, newEntity);
-        }
+        public void RegisterEntity(BaseGameEntity newEntity) => _entityMap.Add(newEntity.ID, newEntity);
 
         //---------------------------- GetEntityFromID ---------------------------
         // Returns entity with the ID given as a parameter.
         //------------------------------------------------------------------------
-        public BaseGameEntity GetEntityFromID(int id)
-        {
-            return entityMap[id];
-        }
+        public BaseGameEntity GetEntityFromID(int id) => _entityMap[id];
 
         //---------------------------- GetEntityFromID ---------------------------
         // This method removes the entity from the Dictionary.
         //------------------------------------------------------------------------
-        public void RemoveEntity(BaseGameEntity newEntity)
-        {
-            entityMap.Remove(newEntity.ID);
-        }
+        public void RemoveEntity(BaseGameEntity newEntity) => _entityMap.Remove(newEntity.ID);
     }
 }

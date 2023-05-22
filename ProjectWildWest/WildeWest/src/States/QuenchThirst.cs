@@ -10,23 +10,8 @@ namespace WildeWest
 {
     internal class QuenchThirst : State<Miner>
     {
-        private static QuenchThirst instance;
-
-        public static QuenchThirst Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new QuenchThirst();
-                }
-                return instance;
-            }
-        }
-
-        private QuenchThirst()
-        {
-        }
+        private static QuenchThirst _instance;
+        public static QuenchThirst Instance => _instance ??= new QuenchThirst();
 
         public override void Enter(Miner miner)
         {
@@ -41,7 +26,7 @@ namespace WildeWest
         {
             Console.WriteLine($"{miner.Name}: That's mighty fine sippin liquor");
             miner.Thirst = 0;
-            miner.GetFSM().ChangeState(EnterMineAndDigForNugget.Instance);
+            miner.FSM.ChangeState(EnterMineAndDigForNugget.Instance);
         }
 
         public override void Exit(Miner miner)

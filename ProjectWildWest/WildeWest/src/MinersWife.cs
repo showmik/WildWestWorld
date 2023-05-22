@@ -2,32 +2,25 @@
 {
     internal partial class MinersWife : BaseGameEntity
     {
-        private readonly StateMachine<MinersWife> stateMachine;
+        private readonly StateMachine<MinersWife> _stateMachine;
+        public StateMachine<MinersWife> FSM => _stateMachine;
         public Location CurrentLocation { get; set; }
         public bool IsCooking { get; set; }
 
         public MinersWife(int id) : base(id)
         {
             IsCooking = false;
-            stateMachine = new StateMachine<MinersWife>(this);
-            stateMachine.SetCurrentState(DoHouseWork.Instance);
-            stateMachine.SetGlobalState(WifesGlobalState.Instance);
+            _stateMachine = new StateMachine<MinersWife>(this);
+            _stateMachine.SetCurrentState(DoHouseWork.Instance);
+            _stateMachine.SetGlobalState(WifesGlobalState.Instance);
         }
 
-        public override bool HandleMessage(Telegram message)
-        {
-            return stateMachine.HandleMessage(message);
-        }
+        public override bool HandleMessage(Telegram message) => _stateMachine.HandleMessage(message);
 
         public override void Update()
         {
             ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Elsa);
-            stateMachine.Update();
-        }
-
-        public StateMachine<MinersWife> GetFSM()
-        {
-            return stateMachine;
+            _stateMachine.Update();
         }
     }
 }

@@ -10,23 +10,8 @@ namespace WildeWest
 {
     internal class VisitBankAndDepositGold : State<Miner>
     {
-        private static VisitBankAndDepositGold instance;
-
-        public static VisitBankAndDepositGold Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new VisitBankAndDepositGold();
-                }
-                return instance;
-            }
-        }
-
-        private VisitBankAndDepositGold()
-        {
-        }
+        private static VisitBankAndDepositGold _instance;
+        public static VisitBankAndDepositGold Instance => _instance ??= new VisitBankAndDepositGold();
 
         public override void Enter(Miner miner)
         {
@@ -43,14 +28,14 @@ namespace WildeWest
             miner.GoldCarried = 0;
             Console.WriteLine($"{miner.Name}: Depositin’ gold. Total savings now: {miner.MoneyInBank}");
 
-            if (miner.Wealthy())
+            if (miner.Wealthy)
             {
                 Console.WriteLine($"{miner.Name}: WooHoo! Rich enough for now. Back home to mah li'lle lady");
-                miner.GetFSM().ChangeState(GoHomeAndSleepTilRested.Instance);
+                miner.FSM.ChangeState(GoHomeAndSleepTilRested.Instance);
             }
             else
             {
-                miner.GetFSM().ChangeState(EnterMineAndDigForNugget.Instance);
+                miner.FSM.ChangeState(EnterMineAndDigForNugget.Instance);
             }
         }
 

@@ -7,10 +7,8 @@ namespace WildeWest
     {
         private static void Main(string[] args)
         {
-            Clock clock = new Clock();
-
-            Miner miner = new Miner(0);
-            MinersWife minersWife = new MinersWife(1);
+            Miner miner = new(0);
+            MinersWife minersWife = new(1);
 
             miner.Name = "Miner Bob";
             minersWife.Name = "Elsa";
@@ -22,9 +20,9 @@ namespace WildeWest
             {
                 miner.Update();
                 minersWife.Update();
-                MessageDispatcher.Instance.DispatchDelayedMessage();
 
-                Thread.Sleep(500);
+                MessageDispatcher.Instance.DispatchDelayedMessage();
+                Thread.Sleep(2000);
                 //Console.WriteLine($"{Clock.CurrentTime:N2}");
             }
 

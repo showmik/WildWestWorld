@@ -11,23 +11,8 @@ namespace WildeWest
 {
     internal class EnterMineAndDigForNugget : State<Miner>
     {
-        private static EnterMineAndDigForNugget instance;
-
-        public static EnterMineAndDigForNugget Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new EnterMineAndDigForNugget();
-                }
-                return instance;
-            }
-        }
-
-        private EnterMineAndDigForNugget()
-        {
-        }
+        private static EnterMineAndDigForNugget _instance;
+        public static EnterMineAndDigForNugget Instance => _instance ??= new EnterMineAndDigForNugget();
 
         public override void Enter(Miner miner)
         {
@@ -44,14 +29,14 @@ namespace WildeWest
             miner.Fatigue++;
             Console.WriteLine($"{miner.Name}: Pickin' up a nugget");
 
-            if (miner.PocketIsFull())
+            if (miner.PocketIsFull)
             {
-                miner.GetFSM().ChangeState(VisitBankAndDepositGold.Instance);
+                miner.FSM.ChangeState(VisitBankAndDepositGold.Instance);
             }
 
-            if (miner.Thirsty())
+            if (miner.Thirsty)
             {
-                miner.GetFSM().ChangeState(QuenchThirst.Instance);
+                miner.FSM.ChangeState(QuenchThirst.Instance);
             }
         }
 

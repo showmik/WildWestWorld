@@ -12,24 +12,22 @@ namespace WildeWest
 {
     internal abstract class BaseGameEntity
     {
-        public string Name { get; set; }
+        // Every entity has a unique ID number.
+        protected int _id;
 
         // This is the next valid ID. Each time a BaseGameEntity is instantiated
         // this value is updated
-        protected static int nextValidID;
-
-        // Every entity has a unique ID number.
-        protected int id;
+        protected static int _nextValidID;
 
         public int ID
         {
-            get { return id; }
+            get { return _id; }
             set
             {
-                if (value >= nextValidID)
+                if (value >= _nextValidID)
                 {
-                    id = value;
-                    nextValidID = id + 1;
+                    _id = value;
+                    _nextValidID = _id + 1;
                 }
                 else
                 {
@@ -41,10 +39,9 @@ namespace WildeWest
             }
         }
 
-        public BaseGameEntity(int id)
-        {
-            ID = id;
-        }
+        public string Name { get; set; }
+
+        public BaseGameEntity(int id) => ID = id;
 
         public abstract void Update();
 

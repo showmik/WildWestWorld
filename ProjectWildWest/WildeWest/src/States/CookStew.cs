@@ -5,23 +5,8 @@ namespace WildeWest
 {
     internal class CookStew : State<MinersWife>
     {
-        private static CookStew instance;
-
-        public static CookStew Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new CookStew();
-                }
-                return instance;
-            }
-        }
-
-        private CookStew()
-        {
-        }
+        private static CookStew _instance;
+        public static CookStew Instance => _instance ??= new CookStew();
 
         public override void Enter(MinersWife wife)
         {
@@ -48,7 +33,7 @@ namespace WildeWest
 
         public override bool OnMessage(MinersWife wife, Telegram telegram)
         {
-            switch (telegram.message)
+            switch (telegram.Message)
             {
                 case (int)Message.MessageTypes.StewReady:
                     {
@@ -58,7 +43,7 @@ namespace WildeWest
 
                         MessageDispatcher.Instance.DispatchMessage(0, wife.ID, 0, (int)Message.MessageTypes.StewReady);
                         wife.IsCooking = false;
-                        wife.GetFSM().ChangeState(DoHouseWork.Instance);
+                        wife.FSM.ChangeState(DoHouseWork.Instance);
                     }
                     return true;
             }

@@ -4,23 +4,8 @@ namespace WildeWest
 {
     internal class DoHouseWork : State<MinersWife>
     {
-        private static DoHouseWork instance;
-
-        public static DoHouseWork Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new DoHouseWork();
-                }
-                return instance;
-            }
-        }
-
-        private DoHouseWork()
-        {
-        }
+        private static DoHouseWork _instance;
+        public static DoHouseWork Instance => _instance ??= new DoHouseWork();
 
         public override void Enter(MinersWife wife)
         {

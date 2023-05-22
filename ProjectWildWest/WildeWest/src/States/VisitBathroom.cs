@@ -4,23 +4,8 @@ namespace WildeWest
 {
     internal class VisitBathroom : State<MinersWife>
     {
-        private static VisitBathroom instance;
-
-        public static VisitBathroom Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new VisitBathroom();
-                }
-                return instance;
-            }
-        }
-
-        private VisitBathroom()
-        {
-        }
+        private static VisitBathroom _instance;
+        public static VisitBathroom Instance => _instance ??= new VisitBathroom();
 
         public override void Enter(MinersWife wife)
         {
@@ -30,7 +15,7 @@ namespace WildeWest
         public override void Execute(MinersWife wife)
         {
             Console.WriteLine($"{wife.Name}: Ahhhhhh! Sweet relief!");
-            wife.GetFSM().RevertToPreviousState();
+            wife.FSM.RevertToPreviousState();
         }
 
         public override void Exit(MinersWife wife)

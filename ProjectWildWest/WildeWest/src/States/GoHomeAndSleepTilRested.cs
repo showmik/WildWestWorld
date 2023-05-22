@@ -10,23 +10,8 @@ namespace WildeWest
 {
     internal class GoHomeAndSleepTilRested : State<Miner>
     {
-        private static GoHomeAndSleepTilRested instance;
-
-        public static GoHomeAndSleepTilRested Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new GoHomeAndSleepTilRested();
-                }
-                return instance;
-            }
-        }
-
-        private GoHomeAndSleepTilRested()
-        {
-        }
+        private static GoHomeAndSleepTilRested _instance;
+        public static GoHomeAndSleepTilRested Instance => _instance ??= new GoHomeAndSleepTilRested();
 
         public override void Enter(Miner miner)
         {
@@ -41,14 +26,14 @@ namespace WildeWest
 
         public override void Execute(Miner miner)
         {
-            if (miner.Tired())
+            if (miner.Tired)
             {
                 Console.WriteLine($"{miner.Name}: ZZZZ...");
                 miner.Fatigue--;
             }
             else
             {
-                miner.GetFSM().ChangeState(EnterMineAndDigForNugget.Instance);
+                miner.FSM.ChangeState(EnterMineAndDigForNugget.Instance);
             }
         }
 
@@ -59,7 +44,7 @@ namespace WildeWest
 
         public override bool OnMessage(Miner miner, Telegram telegram)
         {
-            switch (telegram.message)
+            switch (telegram.Message)
             {
                 case (int)Message.MessageTypes.StewReady:
                     {
@@ -67,7 +52,8 @@ namespace WildeWest
                         ConsoleUtils.SetTextColor(ConsoleUtils.ColorConfigs.Bob);
                         Console.WriteLine($"{miner.Name}: Okay hun, ahm a comin'!");
 
-                        miner.GetFSM().ChangeState(EatStew.Instance);
+                        miner.
+                        FSM.ChangeState(EatStew.Instance);
                     }
                     return true;
             }
